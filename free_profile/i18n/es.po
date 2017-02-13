@@ -1,0 +1,73 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#       * free_profile
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-02-13 00:45+0000\n"
+"PO-Revision-Date: 2017-02-13 00:45+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: free_profile
+#: model:product.product,name:free_profile.by_default_product
+#: model:product.template,name:free_profile.by_default_product_product_template
+msgid "By default"
+msgstr "Por defecto"
+
+#. module: free_profile
+#: model:ir.module.category,description:free_profile.module_category_livingodoo
+msgid "Differents profiles of users"
+msgstr "Diferentes perfiles de usuarios"
+
+#. module: free_profile
+#: model:ir.ui.view,arch_db:free_profile.footer_res_users
+msgid "Email:"
+msgstr "Correo electrónico:"
+
+#. module: free_profile
+#: model:ir.ui.view,arch_db:free_profile.footer_res_users
+msgid "Fax:"
+msgstr "Fax:"
+
+#. module: free_profile
+#: model:res.groups,name:free_profile.group_free_profile
+msgid "Free profile"
+msgstr "Perfil gratuito"
+
+#. module: free_profile
+#: model:ir.module.category,name:free_profile.module_category_livingodoo
+msgid "LivingOdoo"
+msgstr "LivingOdoo"
+
+#. module: free_profile
+#: model:ir.model,name:free_profile.model_res_partner
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: free_profile
+#: model:ir.ui.view,arch_db:free_profile.footer_res_users
+msgid "Phone:"
+msgstr "Teléfono:"
+
+#. module: free_profile
+#: model:ir.model,name:free_profile.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de pedido de venta"
+
+#. module: free_profile
+#: model:ir.ui.view,arch_db:free_profile.footer_res_users
+msgid "TIN:"
+msgstr "NIF:"
+
+#. module: free_profile
+#: model:ir.ui.view,arch_db:free_profile.footer_res_users
+msgid "Website:"
+msgstr "Sitio web:"
+

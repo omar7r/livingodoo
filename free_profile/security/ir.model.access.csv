@@ -1,0 +1,15 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_order_free,sale_order free,sale.model_sale_order,free_profile.group_free_profile,1,1,1,1
+access_account_invoice_tax_free,account_invocie_tax free,account.model_account_invoice_tax,free_profile.group_free_profile,1,1,1,1
+access_account_invoice_free,account_invoice free,account.model_account_invoice_tax,free_profile.group_free_profile,1,1,1,1
+access_account_invoice_line_free,account_invoice_line free,account.model_account_invoice_line,free_profile.group_free_profile,1,1,1,1
+access_res_partner_free,res_partner free,base.model_res_partner,free_profile.group_free_profile,1,1,1,1
+access_ir_attachment_free,ir_attachment free,base.model_ir_attachment,free_profile.group_free_profile,1,1,1,1
+access_account_move_line_free,account_move_line free,account.model_account_move_line,free_profile.group_free_profile,1,1,1,1
+access_account_move_free,account_move free,account.model_account_move,free_profile.group_free_profile,1,1,1,1
+access_calendar_event_free,calendar_event free,calendar.model_calendar_event,free_profile.group_free_profile,1,1,1,1
+access_account_account_type_free,account_account_type free,account.model_account_account_type,free_profile.group_free_profile,1,0,0,0
+access_account_partial_reconcile_free,account_partial_reconcile free,account.model_account_partial_reconcile,free_profile.group_free_profile,1,0,0,0
+access_account_analytic_line_free,account_analytic_line free,analytic.model_account_analytic_line,free_profile.group_free_profile,1,1,1,1
+access_product_template_free,product_template free,product.model_product_template,free_profile.group_free_profile,1,0,0,0
+access_product_product_free,product_product free,product.model_product_product,free_profile.group_free_profile,1,0,0,0

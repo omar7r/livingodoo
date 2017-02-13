@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <record id="default_web_user" model="res.users">
+        <field name="name">Free profile</field>
+        <field name="login">freeprofile</field>
+        <field name="active" eval="False"/>
+        <field name="groups_id" eval="[(6, 0, [ref('free_profile.group_free_profile'),ref('base.group_portal'),ref('sale.group_discount_per_so_line')])]"/>
+    </record>
+
+    <record id="auth_signup.default_template_user_config" model="ir.config_parameter">
+        <field name="key">auth_signup.template_user_id</field>
+        <field name="value" ref="default_web_user"/>
+    </record>
+
+    <record id="by_default_product" model="product.product">
+        <field name="name">By default</field>
+        <field name="categ_id" ref="product.product_category_all"/>
+        <field name="standard_price">0</field>
+        <field name="list_price">1</field>
+        <field name="type">service</field>
+        <field name="uom_id" ref="product.product_uom_unit"/>
+        <field name="uom_po_id" ref="product.product_uom_unit"/>
+        <field name="default_code">DEF</field>
+        <field name="company_id"></field>
+    </record>
+
+
+</odoo>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="header_res_user" inherit_id="report.external_layout_header">
+        <xpath expr="//img[@t-if='company.logo']" position="before">
+            <t t-if="o._name in ('sale.order', 'account.invoice') and user">
+                <img t-if="user.image" t-att-src="'data:image/png;base64,%s' % user.image" style="max-height: 45px;"/>
+            </t>
+        </xpath>
+        <xpath expr="//img[@t-if='company.logo']" position="attributes">
+            <attribute name="t-if">(o._name not in ('sale.order', 'account.invoice') or not user) and company.logo</attribute>
+        </xpath>
+        <xpath expr="//span[@t-field='company.partner_id']" position="before">
+            <t t-if="o._name in ('sale.order', 'account.invoice') and user">
+                <span t-field="user.partner_id"
+                    t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}'
+                    style="border-bottom: 1px solid black; display:inline-block;"/>
+            </t>
+        </xpath>
+        <xpath expr="//span[@t-field='company.partner_id']" position="attributes">
+            <attribute name="t-if">(o._name not in ('sale.order', 'account.invoice') or not user) and company.partner_id</attribute>
+        </xpath>
+    </template>
+
+    <template id="footer_res_users" inherit_id="report.external_layout_footer">
+        <xpath expr="//li[@t-if='company.phone']" position="before">
+            <t t-if="o._name in ('sale.order', 'account.invoice') and user.phone">
+                <li>Phone: <span t-field="user.phone"/></li>
+            </t>
+        </xpath>
+        <xpath expr="//li[@t-if='company.phone']" position="attributes">
+            <attribute name="t-if">(o._name not in ('sale.order', 'account.invoice') or not user) and company.phone</attribute>
+        </xpath>
+        <xpath expr="//li[@t-if='company.fax and company.phone']" position="before">
+            <t t-if="o._name in ('sale.order', 'account.invoice') and user.fax and user.phone">
+                <li>&amp;bull;</li>
+            </t>
+        </xpath>
+        <xpath expr="//li[@t-if='company.fax and company.phone']" position="attributes">
+            <attribute name="t-if">(o._name not in ('sale.order', 'account.invoice') or not user) and company.fax and company.phone</attribute>
+        </xpath>
+        <xpath expr="//li[@t-if='company.fax']" position="before">
+            <t t-if="o._name in ('sale.order', 'account.invoice') and user.fax">
+                <li>Fax: <span t-field="user.fax"/></li>
+            </t>
+        </xpath>
+        <xpath expr="//li[@t-if='company.fax']" position="attributes">
+            <attribute name="t-if">(o._name not in ('sale.order', 'account.invoice') or not user) and company.fax</attribute>
+        </xpath>
+        <xpath expr="//li[@t-if='company.email and company.fax or company.email and company.phone']" position="before">
+            <t t-if="o._name in ('sale.order', 'account.invoice') and (user.email and user.fax) or (user.email and user.phone)">
+                <li>&amp;bull;</li>
+            </t>
+        </xpath>
+        <xpath expr="//li[@t-if='company.email and company.fax or company.email and company.phone']" position="attributes">
+            <attribute name="t-if">(o._name not in ('sale.order', 'account.invoice') or not user) and (company.email and company.fax) or (company.email and company.phone)</attribute>
+        </xpath>
+        <xpath expr="//li[@t-if='company.email']" position="before">
+            <t t-if="o._name in ('sale.order', 'account.invoice') and user.email">
+                <li>Email: <span t-field="user.email"/></li>
+            </t>
+        </xpath>
+        <xpath expr="//li[@t-if='company.email']" position="attributes">
+            <attribute name="t-if">(o._name not in ('sale.order', 'account.invoice') or not user) and company.email</attribute>
+        </xpath>
+        <xpath expr="//li[@t-if='company.website and company.email or company.website and company.fax or company.website and company.phone']" position="before">
+            <t t-if="o._name in ('sale.order', 'account.invoice') and (user.website and user.email) or (user.website and user.fax) or (user.website and user.phone)">
+                <li>&amp;bull;</li>
+            </t>
+        </xpath>
+        <xpath expr="//li[@t-if='company.website and company.email or company.website and company.fax or company.website and company.phone']" position="attributes">
+            <attribute name="t-if">(o._name not in ('sale.order', 'account.invoice') or not user) and (company.website and company.email) or (company.website and company.fax) or (company.website and company.phone)</attribute>
+        </xpath>
+        <xpath expr="//li[@t-if='company.website']" position="before">
+            <t t-if="o._name in ('sale.order', 'account.invoice') and user.website">
+                <li>Website: <span t-field="company.website"/></li>
+            </t>
+        </xpath>
+        <xpath expr="//li[@t-if='company.website']" position="attributes">
+            <attribute name="t-if">(o._name not in ('sale.order', 'account.invoice') or not user) and company.website</attribute>
+        </xpath>
+        <xpath expr="//li[@t-if='company.vat']" position="before">
+            <t t-if="o._name in ('sale.order', 'account.invoice') and user.vat">
+                <li>TIN: <span t-field="user.vat"/></li>
+            </t>
+        </xpath>
+        <xpath expr="//li[@t-if='company.vat']" position="attributes">
+            <attribute name="t-if">(o._name not in ('sale.order', 'account.invoice') or not user) and company.vat</attribute>
+        </xpath>
+    </template>
+
+</odoo>
