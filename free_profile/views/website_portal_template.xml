@@ -3,6 +3,7 @@
 
     <template id="details_sequences" inherit_id="website_portal.details">
         <xpath expr="//input[@name='redirect']" position="before">
+            <div class="clearfix" />
             <h2>Sequences Customization</h2>
             <div class="clearfix" />
             <h3>Invoices Sequence</h3>
@@ -19,8 +20,8 @@
                 <input type="number" name="invoice_seq_padd" class="form-control" min="1" step="1" max="8" t-att-value="invoice_seq_padd or partner.invoice_seq_padd" />
             </div>
             <div t-attf-class="col-lg-6">
-                <label class="control-label label-optional" for="invoice_seq_num_next">Next number</label>
-                <input type="number" name="invoice_seq_num_next" min="1" step="1" class="form-control" t-att-value="invoice_seq_num_next or partner.invoice_seq_num_next" />
+                <label class="control-label label-optional" for="invoice_seq_curr_num_next">Next number</label>
+                <input type="number" name="invoice_seq_curr_num_next" min="1" step="1" class="form-control" t-att-value="invoice_seq_curr_num_next or partner.invoice_seq_curr_num_next" />
             </div>
             <div class="col-md-12">
               <p>Current value: <span name="invoice_seq_example" class="form-control" t-esc="partner.invoice_seq_example"/></p>
@@ -28,8 +29,8 @@
             <div class="clearfix" />
             <h3>Refund Invoices Sequence</h3>
             <div t-attf-class="col-lg-6">
-                <label class="control-label label-optional" for="refund_seq_num_next">Next number</label>
-                <input type="number" name="refund_seq_num_next" min="1" step="1" class="form-control" t-att-value="refund_seq_num_next or partner.refund_seq_num_next" />
+                <label class="control-label label-optional" for="refund_seq_curr_num_next">Next number</label>
+                <input type="number" name="refund_seq_curr_num_next" min="1" step="1" class="form-control" t-att-value="refund_seq_curr_num_next or partner.refund_seq_curr_num_next" />
             </div>
             <div class="col-md-12">
                <p>Current value: <span name="refund_seq_example" class="form-control" t-esc="partner.refund_seq_example"/></p>
@@ -49,8 +50,8 @@
                 <input type="number" name="sale_seq_padd" class="form-control" min="1" step="1" max="8" t-att-value="sale_seq_padd or partner.sale_seq_padd" />
             </div>
             <div t-attf-class="col-lg-6">
-                <label class="control-label label-optional" for="sale_seq_num_next">Next number</label>
-                <input type="number" name="sale_seq_num_next" min="1" step="1" class="form-control" t-att-value="sale_seq_num_next or partner.sale_seq_num_next" />
+                <label class="control-label label-optional" for="sale_seq_curr_num_next">Next number</label>
+                <input type="number" name="sale_seq_curr_num_next" min="1" step="1" class="form-control" t-att-value="sale_seq_curr_num_next or partner.sale_seq_curr_num_next" />
             </div>
             <div class="col-md-12">
               <p>Current value: <span name="sale_seq_example" class="form-control" t-esc="partner.sale_seq_example"/></p>

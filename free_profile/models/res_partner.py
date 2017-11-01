@@ -7,32 +7,73 @@ class ResPartner(models.Model):
 
     _inherit = "res.partner"
 
-    @api.depends('invoice_seq_pref', 'invoice_seq_suff', 'invoice_seq_padd',
-                 'invoice_seq_num_next', 'refund_seq_num_next')
     @api.multi
     def _get_inv_seq_example(self):
         for part in self:
             part.invoice_seq_example = (part.invoice_seq_pref or '') + \
-                '%%0%sd' % part.invoice_seq_padd % part.invoice_seq_num_next +\
-                (part.invoice_seq_suff or '')
+                '%%0%sd' % part.invoice_seq_padd % \
+                part.invoice_seq_curr_num_next + (part.invoice_seq_suff or '')
             part.refund_seq_example = u'AB' + (part.invoice_seq_pref or '') + \
-                '%%0%sd' % part.invoice_seq_padd % part.refund_seq_num_next +\
-                (part.invoice_seq_suff or '')
+                '%%0%sd' % part.invoice_seq_padd % \
+                part.refund_seq_curr_num_next + (part.invoice_seq_suff or '')
 
-    @api.depends('sale_seq_pref', 'sale_seq_suff', 'sale_seq_padd',
-                 'sale_seq_num_next')
     @api.multi
     def _get_sale_seq_example(self):
         for part in self:
             part.sale_seq_example = (part.sale_seq_pref or '') + \
-                '%%0%sd' % part.sale_seq_padd % part.sale_seq_num_next +\
+                '%%0%sd' % part.sale_seq_padd % part.sale_seq_curr_num_next +\
                 (part.sale_seq_suff or '')
+
+    @api.multi
+    def _get_inv_seq_next(self):
+        for part in self:
+            if part.invoice_sequence_id:
+                part.invoice_seq_curr_num_next = \
+                    part.invoice_sequence_id.number_next
+            else:
+                part.invoice_seq_curr_num_next = part.invoice_seq_num_next
+
+    @api.one
+    def _set_inv_seq_next(self):
+        if self.invoice_seq_curr_num_next != self.invoice_seq_num_next:
+            self.invoice_seq_num_next = self.invoice_seq_curr_num_next
+
+    @api.multi
+    def _get_sale_seq_next(self):
+        for part in self:
+            if part.sale_sequence_id:
+                part.sale_seq_curr_num_next = \
+                    part.sale_sequence_id.number_next
+            else:
+                part.sale_seq_curr_num_next = part.sale_seq_num_next
+
+    @api.one
+    def _set_sale_seq_next(self):
+        if self.sale_seq_curr_num_next != self.sale_seq_num_next:
+            self.sale_seq_num_next = self.sale_seq_curr_num_next
+
+    @api.multi
+    def _get_refund_seq_next(self):
+        for part in self:
+            if part.sale_sequence_id:
+                part.refund_seq_curr_num_next = \
+                    part.refund_sequence_id.number_next
+            else:
+                part.refund_seq_curr_num_next = part.refund_seq_num_next
+
+    @api.one
+    def _set_refund_seq_next(self):
+        if self.refund_seq_curr_num_next != self.refund_seq_num_next:
+            self.refund_seq_num_next = self.refund_seq_curr_num_next
 
     user_id = fields.Many2one(default=lambda self: self.env.user.id)
     invoice_seq_pref = fields.Char("Invoice seq. prefix")
     invoice_seq_suff = fields.Char("Invoice seq. suffix")
     invoice_seq_padd = fields.Integer("Invoice seq. padding", required=True,
                                       default=0)
+    invoice_seq_curr_num_next = fields.Integer("Invoice seq. num. next",
+                                               compute="_get_inv_seq_next",
+                                               inverse="_set_inv_seq_next")
     invoice_seq_num_next = fields.Integer("Invoice seq. num. next",
                                           default=1, required=True)
     invoice_seq_example = fields.Char("Invoice seq. example",
@@ -46,6 +87,9 @@ class ResPartner(models.Model):
                                    default=0)
     sale_seq_num_next = fields.Integer("Sale seq. num. next",
                                        default=1, required=True)
+    sale_seq_curr_num_next = fields.Integer("Sale seq. num. next",
+                                            compute="_get_sale_seq_next",
+                                            inverse="_set_sale_seq_next")
     sale_seq_example = fields.Char("Sale seq. example",
                                    compute="_get_sale_seq_example",
                                    readonly=True)
@@ -56,6 +100,9 @@ class ResPartner(models.Model):
                                          help="Same prefix and suffix that "
                                               "invoice sequence adding 'AB' "
                                               "in the prefix")
+    refund_seq_curr_num_next = fields.Integer("Refund invoice seq. num. next",
+                                              compute="_get_refund_seq_next",
+                                              inverse="_set_refund_seq_next")
     refund_sequence_id = fields.Many2one("ir.sequence", "Refund seq.",
                                          readonly=True)
     refund_seq_example = fields.Char("Refund seq. example",
